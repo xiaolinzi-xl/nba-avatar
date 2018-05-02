@@ -90,3 +90,5 @@ IMAGES_STORE = 'download_images'
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+FEED_EXPORT_FIELDS = ['player_id','name','salary','url']

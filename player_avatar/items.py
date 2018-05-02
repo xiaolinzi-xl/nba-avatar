@@ -12,3 +12,11 @@ class PlayerAvatarItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+
+class HupuPlayerItem(scrapy.Item):
+    # define the fields for your item here like:
+    name = scrapy.Field()
+    salary = scrapy.Field()
+    player_id = scrapy.Field()
+    url = scrapy.Field()

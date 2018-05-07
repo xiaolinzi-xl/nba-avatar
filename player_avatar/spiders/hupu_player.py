@@ -37,13 +37,15 @@ class PlayerSpider(scrapy.Spider):
     def parse_player(self,response):
         name = response.css('title::text').extract_first().split('|')[1]
         player_id = re.findall('.*?(\d+).html',response.url)[0]
-        raw_salary = response.css('div.font p::text').extract()[-2]
-        salary = re.findall('.*?(\d+).*',raw_salary)[0]
+        infos = response.css('div.font p::text').extract()
+        raw_salary = infos[-2]
 
-        player = HupuPlayerItem()
-        player['name'] = name.strip()
-        player['player_id'] = player_id
-        player['salary'] = salary
-        player['url'] = response.url
+        if raw_salary.startswith('本赛季薪金'):
+            player = HupuPlayerItem()
+            salary = re.findall('.*?(\d+).*',raw_salary)[0]
+            player['salary'] = salary
+            player['name'] = name.strip()
+            player['player_id'] = player_id
+            player['url'] = response.url
 
-        yield player
+            yield player
